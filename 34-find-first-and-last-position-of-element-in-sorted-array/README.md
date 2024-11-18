@@ -24,3 +24,44 @@
 	<li><code>nums</code> is a non-decreasing array.</li>
 	<li><code>-10<sup>9</sup>&nbsp;&lt;= target&nbsp;&lt;= 10<sup>9</sup></code></li>
 </ul>
+
+from bisect import bisect_left, bisect_right
+from typing import List
+
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        """
+        Find the starting and ending position of a given target value in a sorted array.
+        
+        Approach:
+        - Use binary search (via bisect) to find the leftmost and rightmost positions
+        - bisect_left finds the insertion point for target to maintain sorted order
+        - bisect_right finds the insertion point after the last occurrence
+        
+        Time Complexity: O(log n) - Binary search is used twice
+        Space Complexity: O(1) - Only constant extra space is used
+        
+        Args:
+            nums: A sorted array of integers
+            target: The target value to search for
+            
+        Returns:
+            List[int]: [start_position, end_position], returns [-1, -1] if target not found
+        
+        Example:
+            >>> sol = Solution()
+            >>> sol.searchRange([5,7,7,8,8,10], 8)
+            [3, 4]
+            >>> sol.searchRange([5,7,7,8,8,10], 6)
+            [-1, -1]
+        """
+        if not nums: 
+            return [-1, -1]
+            
+        lower = bisect_left(nums, target)
+        
+        if lower == len(nums) or nums[lower] != target:
+            return [-1, -1]
+            
+        upper = bisect_right(nums, target) - 1
+        return [lower, upper]
