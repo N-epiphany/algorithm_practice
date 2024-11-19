@@ -10,12 +10,12 @@ This repository contains my solutions to various programming challenges from Lee
 
 ```
 /
-├── arrays/
-├── strings/
-├── linked-lists/
-├── trees/
-├── dynamic-programming/
-├── graphs/
+├── binary_search/
+├── 
+├── 
+├── 
+├── 
+├── 
 └── README.md
 ```
 
